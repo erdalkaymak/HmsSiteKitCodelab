@@ -1,51 +1,70 @@
 ---
-title: Create Wiseplayer and Play Video
+title: Complete the Essentials in the Code
 description: 15
 ---
 
-<p><strong>1. Locate following line to create the Wise Player Factory instance in WisePlayerInit Object.</strong></p>
-<pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>    //TODO Initializing of Wise Player Factory
+<p><strong>1. Locate and open *presenter.kt classes. Locate the TODO for creating a SearchService instance and request object in all presenter classes.</strong></p>
+<pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Create a SearchService instance and instantiate request object
 <span class="pln">
 </span></code></pre>
-<p><strong>2. Create the Wise Player Factory instance</strong></p>
-<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>    val factoryOptions = WisePlayerFactoryOptions.Builder().setDeviceId("xxx").build()
-    // In the multi-process scenario, the onCreate method in Application is called multiple times.
-    // The app needs to call the WisePlayerFactory.initFactory() API in the onCreate method of the app process (named "app package name") 
-    // and WisePlayer process (named "app package name:player").
-    WisePlayerFactory.initFactory(context, factoryOptions, object : InitFactoryCallback {
-        override fun onSuccess(factory: WisePlayerFactory) {
-            wisePlayerFactory = factory
-        }
-        override fun onFailure(errorCode: Int, msg: String) {
-            Log.d("WisePlayerInit", "onFailure: $errorCode - $msg")
-        }
-    })
+<p><strong>2. Complete the code for presenter classes except Widget.</strong></p>
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>try {
+    searchService = SearchServiceFactory.create(App.context, URLEncoder.encode(Constants.API_KEY, "utf-8"))
+} catch (e: UnsupportedEncodingException) {
+    Log.e(KeywordSearchActivity.TAG, "encode apikey error")
+}
+
+// instantiate request object in corresponding presenter classes
+textSearchRequest = TextSearchRequest()//Keyword Search
+nearbySearchRequest = NearbySearchRequest()//Nearby Place Search
+detailSearchRequest = DetailSearchRequest()//Place Detail Search
+querySuggestionRequest = QuerySuggestionRequest()//Place Search Suggestion
 <span class="pln">
 </span></code></pre>
-<p>Description of <strong>Wise Player Factory</strong> is as following:<br></p>
-<table style="width: 100%;table-layout: fixed;">
-	<tbody><tr></tr>
-	<tr><td colspan="1" rowspan="1"><p>Parameter</p>
-	</td><td colspan="1" rowspan="1"><p>Type:</p>
-	</td><td colspan="1" rowspan="1"><p>Mandatory or Not</p>
-	</td><td colspan="1" rowspan="1"><p>Description</p>
-	</td></tr>
-	<tr><td colspan="1" rowspan="1"><p>context</p>
-	</td><td colspan="1" rowspan="1"><p>Context</p>
-	</td><td colspan="1" rowspan="1"><p>M</p>
-	</td><td colspan="1" rowspan="1"><p>Android context object, which is not set to null.</p>
-	</td></tr>
-	<tr><td colspan="1" rowspan="1"><p>options</p>
-	</td><td colspan="1" rowspan="1"><p>Integer</p>
-	</td><td colspan="1" rowspan="1"><p>M</p>
-	</td><td colspan="1" rowspan="1"><p>Instance of the WisePlayer factory class initialization option <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-References-V5/wpf-options-0000001050439397-V5" target="_blank">WisePlayerFactoryOptions</a></p>
-	</td></tr>
-	<tr><td colspan="1" rowspan="1"><p>callback</p>
-	</td><td colspan="1" rowspan="1"><p>Object</p>
-	</td><td colspan="1" rowspan="1"><p>M</p>
-	</td><td colspan="1" rowspan="1"><p>Instance of the <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-References-V5/init-factory-callback-0000001050199187-V5" target="_blank">InitFactoryCallback API</a> for initializing the WisePlayer factory class.</p>
-	</td></tr>
-</tbody></table>
+<p><strong>3. Locate TODO for setting editor action listener of Keyword Search function in KeywordSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set editor action listener of Keyword Search function.
+<span class="pln">
+</span></code></pre>
+<p><strong>4. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>view.getMyTextView().setOnEditorActionListener(TextView.OnEditorActionListener { textView, actionId, keyEvent ->
+    if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN || keyEvent.action == KeyEvent.KEYCODE_ENTER) {
+        search()
+        view.hideSoftKeyboard()
+        return@OnEditorActionListener true
+    }
+    false
+})
+<span class="pln">
+</span></code></pre>
+<p><strong>5. Locate TODO for setting request body of Keyword Search function in KeywordSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Keyword Search function.
+<span class="pln">
+</span></code></pre>
+<p><strong>6. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//Specify Query Parameters
+textSearchRequest!!.query = view.getMyText() 
+//textSearchRequest!!.location = Coordinate(Constants.MY_LAT, Constants.MY_LNG)
+//textSearchRequest!!.radius = 4000  
+//textSearchRequest!!.poiType  
+//textSearchRequest!!.hwPoiType = HwLocationType.RESTAURANT 
+textSearchRequest!!.countryCode = "TR"   
+textSearchRequest!!.language = "en" 
+textSearchRequest!!.pageSize = 10 
+textSearchRequest!!.pageIndex = 1 
+<span class="pln">
+</span></code></pre>
+<p>In the object, the  <strong>query</strong> parameter is mandatory, and other parameters are optional:<br></p>
+<ul>
+	<li><strong>query:</strong> search keyword.</li>
+	<li><strong>location:</strong> longitude and latitude to which search results need to be biased.</li>
+	<li><strong>radius:</strong> search radius, in meters. The value ranges from 1 to 50000. The default value is <strong>50000:</strong>.</li>
+	<li><strong>poiType:</strong> POI type. The value range is the same as that of <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-References/api-locationtype-0000001050154741" target="_blank">LocationType</a>.</li>
+  <li><strong>HwPoiType:</strong> Huawei POI type. This parameter is recommended. The value range is the same as that of  <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-References/api-hwlocationtype-0000001050154745" target="_blank">HwLocationType</a>.</li>
+  <li><strong>countryCode:</strong> code of the country where places are searched. The country code must comply with the ISO 3166-1 alpha-2 standard.</li>
+  <li><strong>language:</strong> language in which search results are displayed. For details about the value range, please refer to language codes in  <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/language-mapping-0000001050162856" target="_blank">LanguageMapping</a>. If this parameter is not passed, the language of the <strong>query:</strong> field is used in priority. If the field language is unavailable, the local language will be used.</li>
+  <li><strong>pageSize:</strong> number of records on each page. The value ranges from 1 to 20. The default value is <strong>20</strong>.</li>
+  <li><strong>pageIndex:</strong> current page number. The value ranges from 1 to 60. The default value is <strong>1</strong>.</li>
+</ul>
 <p><strong>3. Locate following line and set the EditTexts Urls in MainActivity to play related buttons</strong></p>
 <pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>   // TODO Set video Url or Urls
 <span class="pln">
