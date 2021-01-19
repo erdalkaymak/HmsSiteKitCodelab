@@ -3,7 +3,7 @@ title: Set up the Project
 description: 5
 ---
 
-<p>You can download the codelab project from: <a href="https://github.com/huaweicodelabs/VideoKit/tree/master/PlayVideosWithVideoKit" target="_blank">https://github.com/huaweicodelabs/VideoKit/tree/master/PlayVideosWithVideoKit</a></p>
+<p>You can download the codelab project from: <a href="https://codehub-dg-g.huawei.com/hms---turkey-dtse-branch/team-c9/hmssitekitdemo.git" target="_blank">https://codehub-dg-g.huawei.com/hms---turkey-dtse-branch/team-c9/hmssitekitdemo.git</a></p>
 
 <h2><strong>Creating a Project</strong></h2>
 <p><strong>Step 1</strong>: Start Android Studio.</p>
@@ -42,50 +42,15 @@ description: 5
 <ul>
 	<li>Add a dependency package to the <strong>dependencies</strong> section in the <strong>build.gradle</strong> file.<pre><div id="copy-button4" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code><span class="pln">dependencies </span><span class="pun">{</span><span class="pln">
 		</span><span class="pun">...</span><span class="pln">
-    </span><span class="str">            //Video Kit</span><span class="pln">
-		implementation </span><span class="str">'com.huawei.hms:videokit-player:1.0.1.300'</span><span class="pln">
+    </span><span class="str">            //Site Kit</span><span class="pln">
+		implementation </span><span class="str">'com.huawei.hms:site:5.0.1.300'</span><span class="pln">
 		</span><span class="pun">...</span><span class="pln">
 	</span><span class="pun">}</span><span class="pln">
 	</span></code></pre>
-  <p>For Video Kit, please refer to <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/version-change-history-0000001050199403" target="_blank">latest version</a>.</p>
+  <p>For Site Kit, please refer to <a href="https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-sdk-version-change-history-0000001050156624" target="_blank">latest version</a>.</p>
 	</li>
 	<li>Add the following information under <strong>apply plugin: 'com.android.application'</strong> in the file header:<pre><div id="copy-button6" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code><span class="pln">apply plugin</span><span class="pun">:</span><span class="pln"> </span><span class="str">'com.huawei.agconnect'</span><span class="pln">
 	</span></code></pre>
 	</li>
 </ul>
-<p><strong>3. Configure obfuscation scripts.</strong></p>
-<ul>
-	<li>Configure the following information in the <strong>app/proguard-rules.pro</strong> file:<pre><div id="copy-button7" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>                <span class="pun">-</span><span class="pln">ignorewarnings</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keepattributes </span><span class="pun">*</span><span class="typ">Annotation</span><span class="pun">*</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keepattributes </span><span class="typ">Exceptions</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keepattributes </span><span class="typ">InnerClasses</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keepattributes </span><span class="typ">Signature</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keepattributes </span><span class="typ">SourceFile</span><span class="pun">,</span><span class="typ">LineNumberTable</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keep </span><span class="kwd">class</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">hianalytics</span><span class="pun">.</span><span class="pln">android</span><span class="pun">.**{*;}</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keep </span><span class="kwd">class</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">huawei</span><span class="pun">.</span><span class="pln">updatesdk</span><span class="pun">.**{*;}</span><span class="pln">
-		</span><span class="pun">-</span><span class="pln">keep </span><span class="kwd">class</span><span class="pln"> com</span><span class="pun">.</span><span class="pln">huawei</span><span class="pun">.</span><span class="pln">hms</span><span class="pun">.**{*;}</span><span class="pln">
-		</span></code></pre>
-	</li>
-	<li>If you are using AndResGuard, add it to the allowlist in the obfuscation script file.<pre><div id="copy-button8" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>               <span class="str"> "R.string.hms*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.connect_server_fail_prompt_toast"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.getting_message_fail_prompt_toast"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.no_available_network_prompt_toast"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.third_app_*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.upsdk_*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.layout.hms*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.layout.upsdk_*"</span><span class="pun">,</span><span class="pln"> 
-		</span><span class="str">"R.drawable.upsdk*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.color.upsdk*"</span><span class="pun">,</span><span class="pln"> 
-		</span><span class="str">"R.dimen.upsdk*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.style.upsdk*"</span><span class="pun">,</span><span class="pln">
-		</span><span class="str">"R.string.agc*"</span><span class="pln">
-		</span></code></pre>
-	</li>
-</ul>
-<p><strong>4. Configure permissions in the AndroidManifest.xml file.</strong></p>
-<pre><div id="copy-button9" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code><span class="tag">&lt;uses-permission</span><span class="pln"> </span><span class="atn">android:name</span><span class="pun">=</span><span class="atv">"android.permission.INTERNET"</span><span class="tag">/&gt;</span><span class="pln">
-</span><span class="tag">&lt;uses-permission</span><span class="pln"> </span><span class="atn">android:name</span><span class="pun">=</span><span class="atv">"android.permission.ACCESS_NETWORK_STATE"</span><span class="tag">/&gt;</span><span class="pln">
-</span><span class="tag">&lt;uses-permission</span><span class="pln"> </span><span class="atn">android:name</span><span class="pun">=</span><span class="atv">"android.permission.ACCESS_WIFI_STATE"</span><span class="tag">/&gt;</span><span class="pln">
-</span><span class="tag">&lt;uses-permission</span><span class="pln"> </span><span class="atn">android:name</span><span class="pun">=</span><span class="atv">"com.huawei.permission.SECURITY_DIAGNOSE"</span><span class="tag">/&gt;</span><span class="pln">
-  </span></code></pre>
-<p><strong>Step 4</strong>: In the Android Studio window, choose <strong>File</strong> &gt; <strong>Sync Project with Gradle Files</strong> to synchronize the project.</p>
+<strong>Step 4</strong>: In the Android Studio window, choose <strong>File</strong> &gt; <strong>Sync Project with Gradle Files</strong> to synchronize the project.</p>
