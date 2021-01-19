@@ -17,11 +17,10 @@ description: 1
   <ul>
 	<li>Keyword Search: Returns a place list based on keywords entered by the user.</li>
 	<li>Nearby Place Search: Searches for nearby places based on the current location of the user's device.</li>
-	<li>lace Detail Search: User can search for details about a particular place based on the unique ID of the place.</li>
+	<li>Place Detail Search: User can search for details about a particular place based on the unique ID of the place.</li>
 	<li>Place Search Suggestion: Returns a list of suggested places according to user input.</li>
   <li>Widget: A search component that provides a list of suggested places according to user input and returns Site object based on user selection.</li>
 </ul>
-</p>
 <h2>
 	<strong>What You Will Create</strong>
 </h2>
