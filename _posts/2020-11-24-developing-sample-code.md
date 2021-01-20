@@ -85,5 +85,5 @@ textSearchRequest!!.pageIndex = 1
     override fun onSearchError(searchStatus: SearchStatus) {
         Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
     }
-})<span class="pln">
-</span></code></pre>
+})
+</code></pre>
