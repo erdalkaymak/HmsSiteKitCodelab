@@ -1,17 +1,12 @@
 ---
-title: Advanced Features
+title: Test and Verification
 description: 5
 ---
 
-<ol type="1">
-  <li><h3>Seekbar:</h3></li>
-  <p>With the feature of Seekbar, displayed video can be rewound or forwarded. With Wise Player's seek feature videos can be played from a specified time.</p>
+<p>Upon completing the essential parts of the code, connect your mobile device to the PC and enable the USB debugging mode. In the Android Studio window, run the project you have created in Android Studio to generate an APK. Then install the APK on the mobile device.</p>
   
-<p><strong>1. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button33" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Seekbar Change
-<span class="pln">
-</span></code></pre>
-<p><strong>2. Implement the Wise Player’s seek method.</strong></p>
+<p><strong>1. Open the app upon installing it to your device.</strong></p>
+<p><strong>2. Choose Keyword Search in main screen, type your keyword and press Enter.</strong></p>
 <pre><div id="copy-button34" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  seekBar?.progress?.let {player.seek(it)}
 <span class="pln">
 </span></code></pre>
