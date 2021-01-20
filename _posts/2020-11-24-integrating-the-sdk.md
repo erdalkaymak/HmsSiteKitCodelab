@@ -53,7 +53,7 @@ description: 5
 	</span></code></pre>
 	</li>
 </ul>
-<strong>Step 4</strong>: In the Android Studio window, choose <strong>File</strong> &gt; <strong>Sync Project with Gradle Files</strong> to synchronize the project.</p>
+<p><strong>Step 4</strong>: In the Android Studio window, choose <strong>File</strong> &gt; <strong>Sync Project with Gradle Files</strong> to synchronize the project.</p>
 <aside class="special">
 	<p><strong>Note:</strong> agconnect-services.json file should be added to project folder as described in “Preparing for the Integration”. Please use your own <strong>API Key</strong> to call kit capabilities.</p>
 </aside>
