@@ -86,9 +86,7 @@ textSearchRequest!!.pageIndex = 1
         Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
     }
 })
-</code></pre>
-<span class="pln">
-</span>
+
 
 <p><strong>9. Locate TODO for setting request body of Nearby Place Search function in NearbyPlaceSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Nearby Place Search function.
