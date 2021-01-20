@@ -73,8 +73,7 @@ textSearchRequest!!.pageIndex = 1
 <span class="pln">
 </span></code></pre>
 <p><strong>8. Complete the TODO with the following code block.</strong></p>
-<pre><div id="copy-button13" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>
-searchService!!.textSearch(textSearchRequest, object :
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.textSearch(textSearchRequest, object :
     SearchResultListener<TextSearchResponse> {
     override fun onSearchResult(textSearchResponse: TextSearchResponse) {
         if (textSearchResponse.sites != null) {
@@ -89,7 +88,6 @@ searchService!!.textSearch(textSearchRequest, object :
 })
 <span class="pln">
 </span></code></pre>
-
 <p><strong>9. Locate TODO for setting request body of Nearby Place Search function in NearbyPlaceSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Nearby Place Search function.
 <span class="pln">
