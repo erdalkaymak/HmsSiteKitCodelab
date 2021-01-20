@@ -5,8 +5,7 @@ description: 15
 
 <p><strong>1. Locate and open *presenter.kt classes. Locate the TODO for creating a SearchService instance and request object in all presenter classes.</strong></p>
 <pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Create a SearchService instance and instantiate request object
-<span class="pln">
-</span></code></pre>
+</code></pre>
 <p><strong>2. Complete the code for presenter classes except Widget.</strong></p>
 <pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>try {
     searchService = SearchServiceFactory.create(App.context, URLEncoder.encode(Constants.API_KEY, "utf-8"))
@@ -19,8 +18,7 @@ textSearchRequest = TextSearchRequest()//Keyword Search
 nearbySearchRequest = NearbySearchRequest()//Nearby Place Search
 detailSearchRequest = DetailSearchRequest()//Place Detail Search
 querySuggestionRequest = QuerySuggestionRequest()//Place Search Suggestion
-<span class="pln">
-</span></code></pre>
+</code></pre>
 <p><strong>3. Locate TODO for setting editor action listener of Keyword Search function in KeywordSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set editor action listener of Keyword Search function.
 <span class="pln">
@@ -86,4 +84,5 @@ textSearchRequest!!.pageIndex = 1
         Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
     }
 })
-</code></pre>
+<span class="pln">
+</span></code></pre>
