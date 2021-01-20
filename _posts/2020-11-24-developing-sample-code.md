@@ -65,102 +65,202 @@ textSearchRequest!!.pageIndex = 1
   <li><strong>pageSize:</strong> number of records on each page. The value ranges from 1 to 20. The default value is <strong>20</strong>.</li>
   <li><strong>pageIndex:</strong> current page number. The value ranges from 1 to 60. The default value is <strong>1</strong>.</li>
 </ul>
-<p><strong>3. Locate following line and set the EditTexts Urls in MainActivity to play related buttons</strong></p>
-<pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>   // TODO Set video Url or Urls
-<span class="pln">
-</span></code></pre>
-<p><strong>4.Set the EditTexts Urls </strong></p>
-<pre><div id="copy-button13" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code> edtUrl.setText(resources.getString(R.string.single_url))
- edtMultipleUrl.setText(resources.getString(R.string.multiple_url))
- <span class="pln">
-</span></code></pre>
-<p><strong>5. Locate following line and create Wise Player Instance in WisePlayerInit Object. </strong></p>
-<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  // TODO Initializing of Wise Player Instance
-<span class="pln">
-</span></code></pre>
-<p><strong>6. Create Wise Player Instance</strong></p>
-<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  return wisePlayerFactory.createWisePlayer()
-<span class="pln">
-</span></code></pre>
 <aside class="special">
-	<p><strong>Note: Frame Layout is necessary for SurfaceView to display videos, otherwise only audio will be listened</strong></p>
+	<p><strong>Note:<strong> If both <strong>poiType<strong> and <strong>HwPoiType<strong> are set, search results of <strong>HwPoiType<strong> take precedence. The following formula must be met: pageIndex * pageSize <= 60.</p>
 </aside>
-<br><img style="width: 400.00px" src="https://raw.githubusercontent.com/bekiryavuzkoc/testRepo/gh-pages/assets/framelayout.PNG" onclick="imageclick(src)">
-<p><strong>7. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button17" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Setting the Listeners
+<p><strong>7. Locate TODO for calling textSearch method by passing the request object and SearchResultListener in KeywordSearchPresenter.kt class </strong></p>
+<pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call textSearch method by passing request object and SearchResultListener
 <span class="pln">
 </span></code></pre>
-<p><strong>8. Set listeners in Play Activity.</strong></p>
-<pre><div id="copy-button18" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player.setReadyListener(this)
-  player.setErrorListener(this)
-  player.setEventListener(this)
-  player.setResolutionUpdatedListener(this)
-  player.setLoadingListener(this)
-  player.setPlayEndListener(this)
-  player.setSeekEndListener(this)
-  <span class="pln">
-</span></code></pre>
-<p><strong>9. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button19" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code> //TODO Callback Listener
+<p><strong>8. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button13" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.textSearch(textSearchRequest, object :
+    SearchResultListener<TextSearchResponse> {
+    override fun onSearchResult(textSearchResponse: TextSearchResponse) {
+        if (textSearchResponse.sites != null) {
+            view.showAllSites(textSearchResponse.sites as ArrayList<Site>)
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
+    }
+    override fun onSearchError(searchStatus: SearchStatus) {
+        Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+    }
+})
 <span class="pln">
 </span></code></pre>
-<p><strong>10. Set the Callback Listener in Play Activity.</strong></p>
-<pre><div id="copy-button20" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  surfaceView.holder.addCallback(this)
+<p><strong>9. Locate TODO for setting request body of Nearby Place Search function in NearbyPlaceSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Nearby Place Search function.
 <span class="pln">
 </span></code></pre>
-<p><strong>11. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button21" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code> //TODO Callback Listener
+<p><strong>10. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>nearbySearchRequest!!.location =  Coordinate(Constants.MY_LAT, Constants.MY_LNG)
+nearbySearchRequest!!.radius = 4000
+nearbySearchRequest!!.query = view.getMyText()
+nearbySearchRequest!!.poiType = view.getMyType()
+//nearbySearchRequest!!.hwPoiType
+nearbySearchRequest!!.language = "en"
+nearbySearchRequest!!.pageSize = 10
+nearbySearchRequest!!.pageIndex = 1
 <span class="pln">
 </span></code></pre>
-<p><strong>12. Set the Seekbar Listener in Play Activity.</strong></p>
-<pre><div id="copy-button22" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  seekBar.setOnSeekBarChangeListener(this)
+<p>In the object, the  <strong>location</strong> parameter is mandatory, and other parameters are optional:<br></p>
+<ul>
+	<li><strong>location:</strong> current location of a user.</li>
+	<li><strong>radius:</strong> search radius, in meters. The value ranges from 1 to 50000. The default value is <strong>1000</strong>. The search radius is used to specify an area where places are searched in priority, but not restrict the search result to this area.</li>
+	<li><strong>query:</strong> search keyword.</li>
+	<li><strong>poiType:</strong> POI type of returned places. The value range is the same as that of <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-References/api-locationtype-0000001050154741-V5" target="_blank">LocationType</a>.</li>
+  <li><strong>HwPoiType:</strong> Huawei POI type of returned places. This parameter is recommended. The value range is the same as that of <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-References/api-hwlocationtype-0000001050154745-V5" target="_blank">HwLocationType</a>.</li>
+  <li><strong>language:</strong> language in which search results are displayed. For details about the value range, please refer to language codes in <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-Guides-V5/language-mapping-0000001050162856-V5" target="_blank">Language Mapping</a>. If this parameter is not passed, English will be used. If English is unavailable, the local language will be used.</li>
+  <li><strong>pageSize:</strong> number of records on each page. The value ranges from 1 to 20. The default value is <strong>20</strong>.</li>
+  <li><strong>pageIndex:</strong> current page number. The value ranges from 1 to 60. The default value is <strong>1</strong>.</li>
+</ul>
+<aside class="special">
+	<p><strong>Note:<strong> If both <strong>poiType<strong> and <strong>HwPoiType<strong> are set, search results of <strong>HwPoiType<strong> take precedence. The following formula must be met: pageIndex * pageSize <= 60.</p>
+</aside>
+<p><strong>11. Locate TODO for calling nearbySearch method by passing request object and SearchResultListener in NearbyPlaceSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call nearbySearch method by passing request object and SearchResultListener
 <span class="pln">
 </span></code></pre>
-<p><strong>13. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button23" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Starting the Player
-	<span class="pln">
-</span></code></pre>
-<p><strong>14. Start Wise Player in Play Activity.</strong></p>
-<pre><div id="copy-button24" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player?.start()
+<p><strong>12. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.nearbySearch(nearbySearchRequest, object:
+    SearchResultListener<NearbySearchResponse> {
+    override fun onSearchResult(nearbySearchResponse: NearbySearchResponse) {
+        if (nearbySearchResponse.sites != null) {
+            view.showAllSites(nearbySearchResponse.sites as ArrayList<Site>)
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
+    }
+    @SuppressLint("LongLogTag")
+    override fun onSearchError(searchStatus: SearchStatus) {
+        Log.e(NearbyPlaceSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+    }
+})
 <span class="pln">
 </span></code></pre>
-<p><strong>15. Locate following line in Play Activity. </strong></p>
-<pre><div id="copy-button25" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Surface Change
+<p><strong>13. Locate TODO for setting request body of Place Detail Search function in PlaceDetailSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Place Detail Search function.
 <span class="pln">
 </span></code></pre>
-<p><strong>16. Set surface change to Wise Player.</strong></p>
-<pre><div id="copy-button26" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player.setSurfaceChange()
+<p><strong>14. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>view.getResponse().text = null
+//detailSearchRequest!!.siteId = "707417C262FF450B4858ABD02A6479AB"
+detailSearchRequest!!.siteId = view.getSiteID()
+//detailSearchRequest!!.language = "tr"
+detailSearchRequest!!.language = view.getLang()
 <span class="pln">
 </span></code></pre>
-<p><strong>17. Locate following line in Play Activity. </strong></p>
-<pre><div id="copy-button27" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Surface Destroy
+<p>In the object, the  <strong>siteID</strong> parameter is mandatory, and other parameters are optional:<br></p>
+<ul>
+	<li><strong>siteID:</strong> ID of a place.</li>
+	<li><strong>Language:</strong> language in which search results are displayed. If this parameter is not passed, the local language will be used.</li>
+</ul>
+<p><strong>15. Locate TODO for calling detailSearch method by passing request object and SearchResultListener in PlaceDetailSearchPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call detailSearch method by passing request object and SearchResultListener
 <span class="pln">
 </span></code></pre>
-<p><strong>18. Suspend the Wise Player if surface is destroyed.</strong></p>
-<pre><div id="copy-button28" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player.suspend()
+<p><strong>16. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.detailSearch(detailSearchRequest, object:
+    SearchResultListener<DetailSearchResponse> {
+    override fun onSearchResult(detailSearchResponse: DetailSearchResponse) {
+        if (detailSearchResponse.site != null) {
+            view.getResponse().text = Convert.convertToString(detailSearchResponse,true )
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
+    }
+    @SuppressLint("LongLogTag")
+    override fun onSearchError(searchStatus: SearchStatus) {
+        Log.e(PlaceDetailSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+        view.getResponse().text = searchStatus.errorMessage
+    }
+})
 <span class="pln">
 </span></code></pre>
-<p><strong>19. Locate following line in Play Activity. </strong></p>
-<pre><div id="copy-button29" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Surface Create
+<p><strong>17. Locate TODO for setting request body of Place Search Suggestion function in PlaceSearchSuggestionPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Place Search Suggestion function.
 <span class="pln">
 </span></code></pre>
-<p><strong>20. Resume Wise Player with the current time when app is sent to foreground.</strong></p>
-<pre><div id="copy-button30" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player.setView(surfaceView)
-  player.resume(PlayerConstants.ResumeType.KEEP)
+<p><strong>18. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>querySuggestionRequest!!.query = view.getMyText()
+querySuggestionRequest!!.location = Coordinate(Constants.MY_LAT, Constants.MY_LNG)
+querySuggestionRequest!!.radius = 10000
+//querySuggestionRequest!!.bounds = CoordinateBounds()
+//querySuggestionRequest!!.poiTypes = LocationType.
+querySuggestionRequest!!.countryCode = "TR"
+querySuggestionRequest!!.language = "tr"
 <span class="pln">
 </span></code></pre>
-<p><strong>21. Locate following line in Play Activity.</strong></p>
-<pre><div id="copy-button31" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  //TODO Release Wise Player
+<p>In the object, the  <strong>query</strong> parameter is mandatory, and other parameters are optional:<br></p>
+<ul>
+	<li><strong>query:</strong> search keyword.</li>
+	<li><strong>location:</strong> longitude and latitude to which search results need to be biased.</li>
+	<li><strong>radius:</strong> search radius, in meters. The value ranges from 1 to 50000. The default value is <strong>50000</strong>. The search radius is used to specify an area where places are searched in priority, but not restrict the search result to this area.</li>
+	<li><strong>bounds:</strong> coordinate bounds to which search results need to be biased.</li>
+  <li><strong>poiTypes:</strong> List of POI types. The value range is a subset of <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-References/api-locationtype-0000001050154741-V5" target="_blank">LocationType</a>.</li>
+  <li><strong>countryCode:</strong> code of the country where places are searched, which complies with the ISO 3166-1 alpha-2 standard.</li>
+  <li><strong>language:</strong> language in which search results are displayed. For details about the value range, please refer to language codes in <a href="https://developer.huawei.com/consumer/en/doc/HMSCore-Guides-V5/language-mapping-0000001050162856-V5" target="_blank">Language Mapping</a>. If this parameter is not passed, English will be used. If English is unavailable, the local language will be used.</li>
+</ul>
+<p><strong>19. Locate TODO for calling querySuggestion method by passing request object and SearchResultListener PlaceSearchSuggestionPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call querySuggestion method by passing request object and SearchResultListener
 <span class="pln">
 </span></code></pre>
-<p><strong>22. Release Wise Player and listeners in Play Activity. </strong></p>
-<pre><div id="copy-button32" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>  player.setErrorListener(null)
-  player.setEventListener(null)
-  player.setResolutionUpdatedListener(null)
-  player.setReadyListener(null)
-  player.setLoadingListener(null)
-  player.setPlayEndListener(null)
-  player.setSeekEndListener(null)
-  player.release()
+<p><strong>20. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.querySuggestion(querySuggestionRequest, object:
+    SearchResultListener<QuerySuggestionResponse> {
+    override fun onSearchResult(querySuggestionResponse: QuerySuggestionResponse?) {
+        if (querySuggestionResponse!!.sites != null) {
+            view.getMyTextView().visibility = View.INVISIBLE
+            view.showAllSites(querySuggestionResponse.sites as ArrayList<Site>)
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
+    }
+
+    @SuppressLint("LongLogTag")
+    override fun onSearchError(searchStatus: SearchStatus?) {
+        if (searchStatus != null) {
+            Log.e(PlaceSearchSuggestionActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+        }
+    }
+})
+<span class="pln">
+</span></code></pre>
+<p><strong>21. Locate TODO to instantiate SearchFragment for Widget in WidgetActivity.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Instantiate SearchFragment for Widget
+<span class="pln">
+</span></code></pre>
+<p><strong>22. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchFragment = (supportFragmentManager.findFragmentById(R.id.widget_fragment) 
+as SearchFragment?)!!
+<span class="pln">
+</span></code></pre>
+<p><strong>23. Locate TODO for Setting API Key and SiteSelectionListener to fetch the suggested places in WidgetPresenter.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set API Key and SiteSelectionListener to fetch suggested places
+<span class="pln">
+</span></code></pre>
+<p><strong>24. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>view.getMyFragment().setApiKey(Constants.API_KEY)
+view.getMyFragment().setOnSiteSelectedListener(object : SiteSelectionListener {
+    @SuppressLint("SetTextI18n")
+    override fun onSiteSelected(site: Site) {
+       view.showMySite(site)
+    }
+    override fun onError(searchStatus: SearchStatus) {
+        view.showMessage("Sorry, we couldn't find any results matching with your query ")
+    }
+})
+<span class="pln">
+</span></code></pre>
+<p><strong>25. Locate TODO for Using Site object to show details of selected places on Widget in WidgetActivity.kt class.</strong></p>
+<pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Use Site object to show details of selected places on Widget
+<span class="pln">
+</span></code></pre>
+<p><strong>26. Complete the TODO with the following code block.</strong></p>
+<pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>textName.text = site.name
+textAddr.text = site.formatAddress
+textLocation.text = "Lat: " + site.location.lat + ", " + "Lng: " + site.location.lng
+phno.text = "Phone: " + site.poi.internationalPhone
+card.visibility = View.VISIBLE
 <span class="pln">
 </span></code></pre>
