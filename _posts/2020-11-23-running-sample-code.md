@@ -13,9 +13,17 @@ description: 2
   <li>Choose Nearby Place Search in main screen, press any poi button to see nearby places, you can also type your keyword and press poi button to see related results.
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/nearbySearch_1.png?raw=true"></p>
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/nearbySearch_2.png?raw=true"></p></li>
-	<li>Choose Place Detail Search in main screen, enter your site ID, language and press button.</li>
+	<li>Choose Place Detail Search in main screen, enter your site ID, language and press button.
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/placeDetail_1.png?raw=true"></p>
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/placeDetail_2.png?raw=true"></p></li>
+  <li>Choose Place Search Suggestion in main screen, enter more than 2 letters in search bar and see the suggested places in cards.
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/searchSuggestion.png?raw=true"></p></li>
+  <li>Choose Place Detail Search in main screen, enter your site ID, language and press button.
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/placeDetail_1.png?raw=true"></p>
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/placeDetail_2.png?raw=true"></p></li>
+  <li>Choose Widget in main screen, enter letters for search and see the suggested places. Click one of them on the widget and see details of the place on the card.
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/widget_1.png?raw=true"></p>
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/widget_2.png?raw=true"></p></li>
 </ol>
 <img style="width: 220.00px" src="https://raw.githubusercontent.com/bekiryavuzkoc/testRepo/gh-pages/assets/videokitone.jpg" onclick="imageclick(src)">             <img style="width: 217.00px" src="https://raw.githubusercontent.com/bekiryavuzkoc/testRepo/gh-pages/assets/playvideoswithvideokittwo.PNG" onclick="imageclick(src)">
 
