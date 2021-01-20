@@ -85,7 +85,7 @@ textSearchRequest!!.pageIndex = 1
     override fun onSearchError(searchStatus: SearchStatus) {
         Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
     }
-})
+})</code></pre>
 
 
 <p><strong>9. Locate TODO for setting request body of Nearby Place Search function in NearbyPlaceSearchPresenter.kt class.</strong></p>
