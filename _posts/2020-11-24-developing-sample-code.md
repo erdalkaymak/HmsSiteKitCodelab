@@ -65,11 +65,9 @@ textSearchRequest!!.pageIndex = 1
   <li><strong>pageSize:</strong> number of records on each page. The value ranges from 1 to 20. The default value is <strong>20</strong>.</li>
   <li><strong>pageIndex:</strong> current page number. The value ranges from 1 to 60. The default value is <strong>1</strong>.</li>
 </ul>
-
 <aside class="special">
-	<p><strong>Note:<strong> If both <strong>poiType<strong> and <strong>HwPoiType<strong> are set, search results of <strong>HwPoiType<strong> take precedence. The following formula must be met: pageIndex * pageSize <= 60.</p>
-</aside>
-    
+	<p><strong>Note:<strong> If both <strong>poiType<strong> and <strong>HwPoiType<strong> are set, search results of <strong>HwPoiType<strong> take precedence. The following formula must be met: pageIndex * pageSize &lt;= 60.</strong></strong></strong></strong></strong></strong></strong></strong></p>
+</aside>    
 <p><strong>7. Locate TODO for calling textSearch method by passing the request object and SearchResultListener in KeywordSearchPresenter.kt class </strong></p>
 <pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call textSearch method by passing request object and SearchResultListener
 <span class="pln">
