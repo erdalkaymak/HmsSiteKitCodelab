@@ -73,16 +73,21 @@ textSearchRequest!!.pageIndex = 1
 <span class="pln">
 </span></code></pre>
 <p><strong>8. Complete the TODO with the following code block.</strong></p>
-<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>nearbySearchRequest!!.location =  Coordinate(Constants.MY_LAT, Constants.MY_LNG)
-nearbySearchRequest!!.radius = 4000
-nearbySearchRequest!!.query = view.getMyText()
-nearbySearchRequest!!.poiType = view.getMyType()
-//nearbySearchRequest!!.hwPoiType
-nearbySearchRequest!!.language = "en"
-nearbySearchRequest!!.pageSize = 10
-nearbySearchRequest!!.pageIndex = 1
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code><div>searchService!!.textSearch(textSearchRequest, object :
+    SearchResultListener<TextSearchResponse> {
+    override fun onSearchResult(textSearchResponse: TextSearchResponse) {
+        if (textSearchResponse.sites != null) {
+            view.showAllSites(textSearchResponse.sites as ArrayList<Site>)
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
+    }
+    override fun onSearchError(searchStatus: SearchStatus) {
+        Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+    }
+})
 <span class="pln">
-</span></code></pre>
+</span></div></code></pre>
 <p><strong>9. Locate TODO for setting request body of Nearby Place Search function in NearbyPlaceSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button14" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Nearby Place Search function.
 <span class="pln">
