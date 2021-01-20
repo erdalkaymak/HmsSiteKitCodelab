@@ -126,7 +126,7 @@ nearbySearchRequest!!.pageIndex = 1
     SearchResultListener<NearbySearchResponse> {
     override fun onSearchResult(nearbySearchResponse: NearbySearchResponse) {
         if (nearbySearchResponse.sites != null) {
-            view.showAllSites(nearbySearchResponse.sites as ArrayList<Site>)
+            view.showAllSites(nearbySearchResponse.sites as ArrayList&lt;Site&gt;)
         } else {
             view.showMessage("Sorry, we couldn't find any results matching with your query ")
         }
