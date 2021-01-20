@@ -9,7 +9,7 @@ description: 2
 <ol type="1">
 	<li>Open the app upon installing it to your device.</li>
 	<li>Choose Keyword Search in main screen, type your keyword and press Enter.
-    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/keywordSearch.png?raw=true"></p>
+    <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/keywordSearch.png?raw=true" onclick="imageclick(src)"></p>
   <li>Choose Nearby Place Search in main screen, press any poi button to see nearby places, you can also type your keyword and press poi button to see related results.
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/nearbySearch_1.png?raw=true"></p>
     <p><img style="width: 220.00px" src="https://github.com/mustafasurucuu/HmsSiteKitCodelab/blob/master/assets/nearbySearch_2.png?raw=true"></p></li>
