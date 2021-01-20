@@ -123,7 +123,7 @@ nearbySearchRequest!!.pageIndex = 1
 </span></code></pre>
 <p><strong>12. Complete the TODO with the following code block.</strong></p>
 <pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.nearbySearch(nearbySearchRequest, object:
-    SearchResultListener<NearbySearchResponse> {
+    SearchResultListener&lt;NearbySearchResponsegt; {
     override fun onSearchResult(nearbySearchResponse: NearbySearchResponse) {
         if (nearbySearchResponse.sites != null) {
             view.showAllSites(nearbySearchResponse.sites as ArrayList&lt;Site&gt;)
@@ -161,7 +161,7 @@ detailSearchRequest!!.language = view.getLang()
 </span></code></pre>
 <p><strong>16. Complete the TODO with the following code block.</strong></p>
 <pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.detailSearch(detailSearchRequest, object:
-    SearchResultListener<DetailSearchResponse> {
+    SearchResultListener&lt;DetailSearchResponse&gt; {
     override fun onSearchResult(detailSearchResponse: DetailSearchResponse) {
         if (detailSearchResponse.site != null) {
             view.getResponse().text = Convert.convertToString(detailSearchResponse,true )
@@ -207,11 +207,11 @@ querySuggestionRequest!!.language = "tr"
 </span></code></pre>
 <p><strong>20. Complete the TODO with the following code block.</strong></p>
 <pre><div id="copy-button15" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.querySuggestion(querySuggestionRequest, object:
-    SearchResultListener<QuerySuggestionResponse> {
+    SearchResultListener&lt;QuerySuggestionResponse&gt; {
     override fun onSearchResult(querySuggestionResponse: QuerySuggestionResponse?) {
         if (querySuggestionResponse!!.sites != null) {
             view.getMyTextView().visibility = View.INVISIBLE
-            view.showAllSites(querySuggestionResponse.sites as ArrayList<Site>)
+            view.showAllSites(querySuggestionResponse.sites as ArrayList&lt;Site&gt;)
         } else {
             view.showMessage("Sorry, we couldn't find any results matching with your query ")
         }
