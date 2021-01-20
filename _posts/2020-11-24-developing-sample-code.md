@@ -74,12 +74,17 @@ textSearchRequest!!.pageIndex = 1
 </span></code></pre>
 <p><strong>8. Complete the TODO with the following code block.</strong></p>
 <pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.textSearch(textSearchRequest, object :
-    SearchResultListener<TextSearchResponse> {
+    SearchResultListener&lt;TextSearchResponse&gt; {
     override fun onSearchResult(textSearchResponse: TextSearchResponse) {
-        if (textSearchResponse.sites != null) {view.showAllSites(textSearchResponse.sites as ArrayList<Site>)} 
-        else {view.showMessage("Sorry, we couldn't find any results matching with your query ")}
+        if (textSearchResponse.sites != null) {
+            view.showAllSites(textSearchResponse.sites as ArrayList&lt;Site&gt;)
+        } else {
+            view.showMessage("Sorry, we couldn't find any results matching with your query ")
+        }
     }
-    override fun onSearchError(searchStatus: SearchStatus) {Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)}
+    override fun onSearchError(searchStatus: SearchStatus) {
+        Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
+    }
 })
 <span class="pln">
 </span></code></pre>
