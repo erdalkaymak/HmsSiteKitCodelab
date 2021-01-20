@@ -3,12 +3,12 @@ title: "Introduction"
 description: 1
 ---
 
-<huawei-codelab-about codelab-title="Huawei Site Kit" last-updated="2020-12-09T13:20:13-07:00" authors="Huawei Codelab Team">
+<huawei-codelab-about codelab-title="Huawei Site Kit" last-updated="2021-01-20T13:20:13-07:00" authors="Huawei Codelab Team">
 <div class="codelab-title">
 <div class="token">Huawei Site Kit</div></div>
 <div class="about-card">
 <h2 class="title">About this codelab</h2>
-<div class="last-updated"><i class="material-icons">subject</i>Last updated Dec 09, 2020</div>
+<div class="last-updated"><i class="material-icons">subject</i>Last updated Jan 20, 2021</div>
 <div class="authors"><i class="material-icons">account_circle</i>Written by Huawei Codelab Team</div></div>
 </huawei-codelab-about>
 
