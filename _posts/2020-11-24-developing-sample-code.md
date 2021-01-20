@@ -66,7 +66,8 @@ textSearchRequest!!.pageIndex = 1
 <pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call textSearch method by passing request object and SearchResultListener
 </code></pre>
 <p><strong>8. Complete the TODO with the following code block.</strong></p>
-<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.textSearch(textSearchRequest, object :
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>
+searchService!!.textSearch(textSearchRequest, object :
     SearchResultListener<TextSearchResponse> {
     override fun onSearchResult(textSearchResponse: TextSearchResponse) {
         if (textSearchResponse.sites != null) {
