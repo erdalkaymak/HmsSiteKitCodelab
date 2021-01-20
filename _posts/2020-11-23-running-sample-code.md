@@ -21,4 +21,3 @@ description: 2
   <li>Choose Widget in main screen, enter letters for search and see the suggested places. Click one of them on the widget and see details of the place on the card.
     <p><img style="width: 220.00px" src="https://raw.githubusercontent.com/mustafasurucuu/HmsSiteKitCodelab/master/assets/widget_1.png"></p>
     <p><img style="width: 220.00px" src="https://raw.githubusercontent.com/mustafasurucuu/HmsSiteKitCodelab/master/assets/widget_2.png"></p></li>
-</ol>
