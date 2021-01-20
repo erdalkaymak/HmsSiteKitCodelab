@@ -1,6 +1,6 @@
 ---
 title: Additional Information
-description: 5
+description: 1
 ---
 
 <p>This project has been developed with MVP design pattern. Please check that interface, presenter and activity classes are generated for each feature. In interface classes, presenter and view interfaces are defined. With the presenter object that initialized in activity classes, the methods will be called where actual work has been done to use Huawei Site SDK capabilities. In this way, we take the most of the logic out from the activity classes. These methods are generated inside presenter classes.</p>
