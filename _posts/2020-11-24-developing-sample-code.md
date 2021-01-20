@@ -5,7 +5,8 @@ description: 15
 
 <p><strong>1. Locate and open *presenter.kt classes. Locate the TODO for creating a SearchService instance and request object in all presenter classes.</strong></p>
 <pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Create a SearchService instance and instantiate request object
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>2. Complete the code for presenter classes except Widget.</strong></p>
 <pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>try {
     searchService = SearchServiceFactory.create(App.context, URLEncoder.encode(Constants.API_KEY, "utf-8"))
@@ -18,12 +19,14 @@ textSearchRequest = TextSearchRequest()//Keyword Search
 nearbySearchRequest = NearbySearchRequest()//Nearby Place Search
 detailSearchRequest = DetailSearchRequest()//Place Detail Search
 querySuggestionRequest = QuerySuggestionRequest()//Place Search Suggestion
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>3. Locate TODO for setting editor action listener of Keyword Search function in KeywordSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set editor action listener of Keyword Search function.
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>4. Complete the TODO with the following code block.</strong></p>
-<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>view.getMyTextView().setOnEditorActionListener(TextView.OnEditorActionListener { textView, actionId, keyEvent ->
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>view.getMyTextView().setOnEditorActionListener(TextView.OnEditorActionListener { textView, actionId, keyEvent -&gt;
     if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN || keyEvent.action == KeyEvent.KEYCODE_ENTER) {
         search()
         view.hideSoftKeyboard()
@@ -31,10 +34,12 @@ querySuggestionRequest = QuerySuggestionRequest()//Place Search Suggestion
     }
     false
 })
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>5. Locate TODO for setting request body of Keyword Search function in KeywordSearchPresenter.kt class.</strong></p>
 <pre><div id="copy-button10" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Set request body of Keyword Search function.
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>6. Complete the TODO with the following code block.</strong></p>
 <pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//Specify Query Parameters
 textSearchRequest!!.query = view.getMyText() 
@@ -46,8 +51,9 @@ textSearchRequest!!.countryCode = "TR"
 textSearchRequest!!.language = "en" 
 textSearchRequest!!.pageSize = 10 
 textSearchRequest!!.pageIndex = 1 
-</code></pre>
-<p>In the object, the  <strong>query</strong> parameter is mandatory, and other parameters are optional:<br></p>
+<span class="pln">
+</span></code></pre>
+<p>In the object, the  <strong>query</strong> parameter is mandatory, and other parameters are optional:<br /></p>
 <ul>
 	<li><strong>query:</strong> search keyword.</li>
 	<li><strong>location:</strong> longitude and latitude to which search results need to be biased.</li>
@@ -61,13 +67,13 @@ textSearchRequest!!.pageIndex = 1
 </ul>
 <aside class="special">
 	<p><strong>Note:<strong> If both <strong>poiType<strong> and <strong>HwPoiType<strong> are set, search results of <strong>HwPoiType<strong> take precedence. The following formula must be met: pageIndex * pageSize &lt;= 60.</strong></strong></strong></strong></strong></strong></strong></strong></p>
-</aside>    
+</aside>
 <p><strong>7. Locate TODO for calling textSearch method by passing the request object and SearchResultListener in KeywordSearchPresenter.kt class </strong></p>
 <pre><div id="copy-button12" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>//TODO Call textSearch method by passing request object and SearchResultListener
-</code></pre>
+<span class="pln">
+</span></code></pre>
 <p><strong>8. Complete the TODO with the following code block.</strong></p>
-<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>
-searchService!!.textSearch(textSearchRequest, object :
+<pre><div id="copy-button11" class="copy-btn" title="Copy" onclick="copyCode(this.id)"></div><code>searchService!!.textSearch(textSearchRequest, object :
     SearchResultListener<TextSearchResponse> {
     override fun onSearchResult(textSearchResponse: TextSearchResponse) {
         if (textSearchResponse.sites != null) {
@@ -80,4 +86,4 @@ searchService!!.textSearch(textSearchRequest, object :
         Log.e(KeywordSearchActivity.TAG, "onSearchError is: " + searchStatus.errorCode)
     }
 })
-</code></pre>
+
